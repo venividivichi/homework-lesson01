@@ -1,18 +1,16 @@
+let toLFT = true;
 
-let userData = prompt('Введіть, будь ласка, довільну строку: ')
+function padString(str, leng, smbl, toLFT) {
 
-function reverseStr(str) {
-    let word = '';
-
-    for (let i = str.length - 1; i >= 0; i--) {
-        word += str[i]
+    if (leng > str.length && toLFT) {
+        result = str.padStart(leng, smbl)
+        return alert('Ваша нова строка: ' + result)
+    } else if (leng > str.length) {
+        result = str.padEnd(leng, smbl)
+        return alert('Ваша нова строка: ' + result)
+    } else {
+        return alert('Ваша строка: ' + str)
     }
-
-    return str === word
 }
-
-if (reverseStr(userData)) {
-    alert('Введена строка - ' + userData + ' - є паліндромом!' );
-} else {
-    alert('Введена строка - ' + userData + ' - не є паліндромом!')
-}
+    
+padString('Ivan', 6, '*');

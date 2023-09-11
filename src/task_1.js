@@ -1,14 +1,13 @@
 
 let userData = prompt('Введіть, будь ласка, довільну строку: ')
 
-function reverseStr(str) {
-    let word = '';
+function doubleLetter(str) {
+    let result = '';
 
-    for (let i = str.length - 1; i >= 0; i--) {
-        word += str[i];
+    for(let i = 0; i < str.length; i++) {
+        result += str[i] + str[i];
     }
-
-    return alert('Ваша строка в оберненому вигляді виглядає так: ' + word)
+    return alert('Продубльовані літери у Вашій строці: ' + result)
 }
 
-reverseStr(userData);
+doubleLetter(userData);
