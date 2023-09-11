@@ -1,13 +1,23 @@
 
-let userData = prompt('Введіть, будь ласка, довільну строку: ')
+let a = prompt("Введіть, будь ласка, число: ");
+let n = parseInt(a);
 
-function doubleLetter(str) {
-    let result = '';
+let isSimpleNumber = true;
 
-    for(let i = 0; i < str.length; i++) {
-        result += str[i] + str[i];
+    if (n === 1 || n === 0) {
+        isPrime = false;
+    } else {
+        for (let i = 2; i < n; i++) { 
+            if (n % i === 0) { 
+                isSimpleNumber = false; 
+                break; 
+            }
+        } 
     }
-    return alert('Продубльовані літери у Вашій строці: ' + result)
-}
 
-doubleLetter(userData);
+    if (isSimpleNumber) {
+        console.log("Число просте");
+    } else {
+        console.log("Число не просте");
+    }
+
