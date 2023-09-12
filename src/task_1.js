@@ -1,23 +1,13 @@
+const originalArray = [1, 2, 3, 4, 5];
+const newArr = [];
 
-let a = prompt("Введіть, будь ласка, число: ");
-let n = parseInt(a);
-
-let isSimpleNumber = true;
-
-    if (n === 1 || n === 0) {
-        isPrime = false;
-    } else {
-        for (let i = 2; i < n; i++) { 
-            if (n % i === 0) { 
-                isSimpleNumber = false; 
-                break; 
-            }
-        } 
+function reverseArray(arr) {
+    for (let i = arr.length - 1; i >= 0; i--) {
+        newArr.push(arr[i]);
     }
+    return newArr
+}
 
-    if (isSimpleNumber) {
-        console.log("Число просте");
-    } else {
-        console.log("Число не просте");
-    }
+const reversedArray = reverseArray(originalArray);
 
+console.log(reversedArray); // [5, 4, 3, 2, 1]
