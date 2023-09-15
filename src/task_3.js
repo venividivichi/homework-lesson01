@@ -1,21 +1,27 @@
+const numbers = [1, 2, 3, 4, 5];
 
-const students = [
-	{ name: "Alice", age: 20, grade: 4.5 },
-	{ name: "Bob", age: 21, grade: 3.9 },
-	{ name: "Charlie", age: 19, grade: 4.8 }
-];
+let sumValues = 0;
+let avg = 0;
+let minValue = numbers[0];
+let maxValue = numbers[0];
 
-sumGrade = 0;
+function analyzeArray(numbers) {
 
-function calculateAverageGrade(students) {
-  
-   let result = 0;
+   for (let item of numbers) {
 
-   for (item of students) {
-      sumGrade += item.grade;
-      result = sumGrade / students.length;
+      sumValues += item;
+      avg = (sumValues / numbers.length).toFixed(2);
+
+      if (item < minValue) {
+         minValue = item;
+      }
+      if (item > maxValue) {
+         maxValue = item;
+      }
    }
-   return result.toFixed(1)
+
+   return { sum: sumValues, average: +avg, min: minValue, max: maxValue }
+
 }
 
-console.log(calculateAverageGrade(students));
+console.log(analyzeArray(numbers)); // { sum: 15, average: 3, min: 1, max: 5 }

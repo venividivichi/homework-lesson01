@@ -1,20 +1,18 @@
 
-const array1 = [1, 2, 3, 4, 4, 1, 5];
-const array2 = [3, 5, 4, 5, 6, 7];
+const array1 = [1, 2, 3, 4, 5];
+const array2 = [3, 4, 5, 6, 7];
 
-let newArr = []
+function findCommonElements(arr1, arr2) {
 
-function uniqueValues(arr1, arr2) {
-    
-    let concatArr = arr1.concat(arr2)
+    let result = [];
 
-        for (let i = 0; i <= concatArr.length; i++) {
-            if (concatArr.indexOf(concatArr[i]) == i)
-             newArr.push(concatArr[i]);
+        for (let i = 0; i < arr1.length; i++) {
+            for (let j = 0; j < arr2.length; j++) {
+                if (arr1[i] == arr2[j])
+                result.push(arr1[i]);
+            }
         }
-    return newArr
+    return result
 }
 
-const uniqueValuesArray = uniqueValues(array1, array2);
-
-console.log(uniqueValuesArray); // [1, 2, 3, 4, 5, 6, 7]
+console.log(findCommonElements(array1, array2)); // [3, 4, 5]
