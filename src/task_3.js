@@ -1,12 +1,12 @@
 const numbers = [1, 2, 3, 4, 5];
 
-let sumValues = 0;
-let avg = 0;
-let minValue = numbers[0];
-let maxValue = numbers[0];
-
 function analyzeArray(numbers) {
 
+   let sumValues = 0;
+   let avg = 0;
+   let minValue = numbers[0];
+   let maxValue = numbers[0];
+   
    for (let item of numbers) {
 
       sumValues += item;
