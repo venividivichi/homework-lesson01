@@ -1,16 +1,16 @@
 
-const words = ["apple", "banaNA", "kiWi", "ORANGE"];
+const array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
-function capitalizeStrings(words) {
+function getSimpleNumb(arr) {
   
-        let result = [];
-
-        for(let i = 0; i < words.length; i++) { 
-            words[i] = words[i].charAt(0).toUpperCase() + words[i].slice(1).toLowerCase();
-            result.push(words[i])
+    for (let i = 2; arr > i; i++) {
+        if (arr % i === 0) {
+          return false;
         }
-    return result
-
+      }
+    return arr > 1;
 }
 
-console.log(capitalizeStrings(words)); // ["Apple", "Banana", "Kiwi", "Orange"]
+let result = array.filter(getSimpleNumb)
+
+console.log(result); // [2, 3, 5, 7]

@@ -1,25 +1,37 @@
 
-const array1 = [1, 2, 3, 4, 5];
-const array2 = [3, 4, 5, 6, 7];
+const notification = [
+  {
+    source: 'radio',
+    text: 'Загроза застосування балістичного озброєння!',
+    date: '01.08.2023'
+  },
+  {
+    source: 'sms',
+    text: 'Загроза застосування хімічної зброї!',
+    date: '10.08.2023'
+  },
+  {
+    source: 'email',
+    text: 'Загроза застосування ракетного озброєння!',
+    date: '30.08.2023'
+  },
+  {
+    source: 'ZASCO',
+    text: 'Загроза застосування ядерної зброї!',
+    date: '30.08.2023'
+  },
+]
 
-function findCommonElements(arr1, arr2) {
+function transform(arr) {
 
-    let result = [];
+  let response = {};
 
-    for (let i = 0; i < arr1.length; i++) {
-           
-        if(arr2.indexOf(arr1[i]) !== -1){
-          result.push(arr1[i]);
-        }
-      }
+  for (item of arr) {
+    response[item.source] = [{text: item.text, date: item.date}];
+  }
 
-        // for (let i = 0; i < arr1.length; i++) {
-        //     for (let j = 0; j < arr2.length; j++) {
-        //         if (arr1[i] == arr2[j])
-        //         result.push(arr1[i]);
-        //     }
-        // }
-    return result
+  return response
+
 }
 
-console.log(findCommonElements(array1, array2)); // [3, 4, 5]
+console.log(transform(notification));
