@@ -1,37 +1,34 @@
+function memoize(fn) {
+ 
+  const cache = new Map();
 
-const notification = [
-  {
-    source: 'radio',
-    text: 'Загроза застосування балістичного озброєння!',
-    date: '01.08.2023'
-  },
-  {
-    source: 'sms',
-    text: 'Загроза застосування хімічної зброї!',
-    date: '10.08.2023'
-  },
-  {
-    source: 'email',
-    text: 'Загроза застосування ракетного озброєння!',
-    date: '30.08.2023'
-  },
-  {
-    source: 'ZASCO',
-    text: 'Загроза застосування ядерної зброї!',
-    date: '30.08.2023'
-  },
-]
+  return function (num) {
 
-function transform(arr) {
+    const key = num;
 
-  let response = {};
+    if (cache.has(key)) {
+      console.log('Data from cache');
+      return cache.get(key);
+    }
 
-  for (item of arr) {
-    response[item.source] = [{text: item.text, date: item.date}];
-  }
+    const result = fn(num);
+    cache.set(key, result);
+    console.log('Data calculating');
+    
+    return result;
+  };
 
-  return response
 
 }
 
-console.log(transform(notification));
+// Example usage:
+function add(num) {
+  console.log(`Calculating multiplication for ${num}`);
+  return num * 2;
+}
+
+const memoizedMTPL = memoize(add);
+
+console.log(memoizedMTPL(2));
+console.log(memoizedMTPL(12)); // Returns cached result (10) without recalculation
+console.log(memoizedMTPL(12));
