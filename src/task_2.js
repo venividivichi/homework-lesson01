@@ -1,7 +1,7 @@
 
-function Student (name, surname, birthday) {
-  this.name = name;
-  this.surname = surname;
+function Student (firstName, lastName, birthday) {
+  this.firstName = firstName;
+  this.lastName = lastName;
   this.birthday = birthday;
   this.marks = {};
   this.attendance = {};
@@ -10,7 +10,7 @@ function Student (name, surname, birthday) {
 
 Student.prototype.addMark = function (mark, course) {
 
-  if (!this.marks[course]) {
+  if (!Object.hasOwn(this.marks, course)) {
     this.marks[course] = [];
   }
   
@@ -19,7 +19,7 @@ Student.prototype.addMark = function (mark, course) {
 
 Student.prototype.addAttendance = function (isPres, course) {
   
-  if (!this.attendance[course]) {
+  if (!Object.hasOwn(this.attendance, course)) {
     this.attendance[course] = [];
   }
 
@@ -67,10 +67,10 @@ function getCourseInfo(student) {
   return student.courses.map(course => {
    
     return `
-    Назва курсу: ${course}
-    Отримані оцінки: ${student.marks[course].join(', ')}; середня успішність: ${student.getAvgSuccessRate(course)}%
-    Кількість пройдених занять: ${student.getCountAttendances(course)}
-    Середня відвідуваність: ${student.getAvgAttendance(course).toFixed(2)}%
+    Course name: ${course}
+    Get marks: ${student.marks[course].join(', ')}; середня успішність: ${student.getAvgSuccessRate(course)}%
+    Count attendances: ${student.getCountAttendances(course)}
+    Average attendances: ${student.getAvgAttendance(course).toFixed(2)}%
     `
   }).join('\n');
 }
@@ -78,29 +78,29 @@ function getCourseInfo(student) {
 Student.prototype.getAllInfo = function () {
 
   return `
-    Ім'я: ${this.name}
-    Прізвище: ${this.surname}
-    Рік народження: ${this.birthday}
+    Firstname: ${this.firstName}
+    Lastname: ${this.lastName}
+    Birthday: ${this.birthday}
   
-    Курси:
+    Course:
     ${getCourseInfo(this)}
   `
 }
 
 const student_L = new Student('Любомир', 'Любомирович', 1994);
 
-student_L.changeCourse('Математика');
-student_L.changeCourse('Англійська');
+student_L.changeCourse('Math');
+student_L.changeCourse('English');
 
-student_L.addMark(87, 'Математика');
-student_L.addMark(97, 'Англійська');
-student_L.addMark(70, 'Математика');
+student_L.addMark(87, 'Math');
+student_L.addMark(97, 'English');
+student_L.addMark(70, 'Math');
 
-student_L.addAttendance(true, 'Математика');
-student_L.addAttendance(false, 'Математика');
-student_L.addAttendance(false, 'Математика');
-student_L.addAttendance(true, 'Англійська');
-student_L.addAttendance(false, 'Англійська');
+student_L.addAttendance(true, 'Math');
+student_L.addAttendance(false, 'Math');
+student_L.addAttendance(false, 'Math');
+student_L.addAttendance(true, 'English');
+student_L.addAttendance(false, 'English');
 
 //student_L.removeCourse('bla2') - якщо треба видалити курс
 
@@ -110,4 +110,4 @@ student_L.addAttendance(false, 'Англійська');
 //  console.log('Кількість пройдених занять: ' + student_L.getCountAttendances('bla1'));
  
 console.log('-----------------------------');
-console.log('інформація про студента: ' + student_L.getAllInfo());
+console.log('Info about student: ' + student_L.getAllInfo());
