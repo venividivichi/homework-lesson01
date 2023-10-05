@@ -68,7 +68,7 @@ function getCourseInfo(student) {
    
     return `
     Course name: ${course}
-    Get marks: ${student.marks[course].join(', ')}; середня успішність: ${student.getAvgSuccessRate(course)}%
+    Get marks: ${student.marks[course].join(', ')}; average success rate: ${student.getAvgSuccessRate(course)}%
     Count attendances: ${student.getCountAttendances(course)}
     Average attendances: ${student.getAvgAttendance(course).toFixed(2)}%
     `
