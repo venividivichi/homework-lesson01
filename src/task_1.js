@@ -5,7 +5,7 @@ class TodoList {
   }
 
   addNote(textNote) {
-    if (textNote.trim() !== '') {
+    if (textNote.trim() != '') {
       const note = {
         note_cmplt_st: false,
         text: textNote
@@ -63,7 +63,7 @@ class TodoList {
     } else {
       console.log('Notes list:');
         this.notes.forEach((note, index) => {
-        console.log(`${index + 1}. Status: ${note.note_cmplt_st}, task: ${note.text}`);
+        console.log(`${index}. Status: ${note.note_cmplt_st}, task: ${note.text}`);
       });
     }
   }
