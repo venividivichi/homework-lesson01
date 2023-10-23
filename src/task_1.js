@@ -1,37 +1,22 @@
-function isPalindrome(number) {
-  let numString = number.toString();
-  let reversedNum = numString.split("").reverse().join("");
-  
-  return numString === reversedNum;
-}
 
-function findLychrelNumber(startNumber) {
-  let currentNumber = startNumber;
-  let steps = 0;
+function randomDelayPrint(phrase) {
+  let lettersArr = phrase.split('');
+  let index = 0;
 
-  while (steps < 1000) { 
-    let sum = 0;
-    let reversedNumber = parseInt(currentNumber.toString().split("").reverse().join(""));
-    //console.log(reversedNumber);
-    sum = currentNumber + reversedNumber;
+  function printNextLetter() {
+    if (index < lettersArr.length) {
+      let letter = lettersArr[index];
+      let delay = Math.random() * 1000;
 
-    currentNumber = sum;
-    steps++;
-
-    if (isPalindrome(sum)) {
-      return { result: sum, steps };
+      setTimeout(() => {
+        console.log(letter);
+        index++;
+        printNextLetter();
+      }, delay);
     }
   }
 
-  return { result: 'not found', steps };
+  printNextLetter();
 }
 
-let lychrelNumber = 312;
-let findResult = findLychrelNumber(lychrelNumber);
-
-if (findResult.result !== 'not found') {
-  console.log(`Palindrome for number ${lychrelNumber} find: is ${findResult.result} in ${findResult.steps} steps.`);
-} else {
-  console.log(`Palindrome for number ${lychrelNumber} don\`t found after ${findResult.steps} steps.`);
-}
-
+randomDelayPrint('blabla');
