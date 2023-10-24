@@ -1,27 +1,32 @@
-const numbers = [1, 2, 3, 4, 5];
 
-function analyzeArray(numbers) {
+function sequenceAsync(asyncFunctions) {
+  
+  let result;
 
-   let sumValues = 0;
-   let avg = 0;
-   let minValue = numbers[0];
-   let maxValue = numbers[0];
-   
-   for (let item of numbers) {
-
-      sumValues += item;
-      avg = (sumValues / numbers.length).toFixed(2);
-
-      if (item < minValue) {
-         minValue = item;
-      }
-      if (item > maxValue) {
-         maxValue = item;
-      }
-   }
-
-   return { sum: sumValues, average: +avg, min: minValue, max: maxValue }
-
+  return  new Promise( async (resolve) => {
+    for (let asyncFunction of asyncFunctions) {
+      result = await asyncFunction(result);
+    }
+    resolve(result)
+  })
 }
 
-console.log(analyzeArray(numbers)); // { sum: 15, average: 3, min: 1, max: 5 }
+let tempalteFunctions = [
+  async () => {
+    return 'I`m';
+  },
+  async (prevResult) => {
+    return prevResult + ' learning';
+  },
+  async (prevResult) => {
+    return prevResult + ' JavaScript';
+  },
+  async (prevResult) => {
+    return prevResult + '!';
+  },
+];
+
+sequenceAsync(tempalteFunctions)
+  .then( (result) => {
+    console.log(result);
+  })

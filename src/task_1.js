@@ -1,22 +1,17 @@
 
-function randomDelayPrint(phrase) {
-  let lettersArr = phrase.split('');
-  let index = 0;
+function sumArrayPromise (arr) {
 
-  function printNextLetter() {
-    if (index < lettersArr.length) {
-      let letter = lettersArr[index];
-      let delay = Math.random() * 1000;
+  return  new Promise((resolve) => {
+    setTimeout(() => {
+       let sum = 0;  
+       sum = arr.reduce((accumulator, currentValue) => accumulator + currentValue, sum);
+       resolve(sum)
+    }, 3000);
+  });
 
-      setTimeout(() => {
-        console.log(letter);
-        index++;
-        printNextLetter();
-      }, delay);
-    }
-  }
-
-  printNextLetter();
 }
 
-randomDelayPrint('blabla');
+sumArrayPromise([1,2,3,4,5])
+  .then( (result) => {
+    console.log('Array sum: ' + result);
+  })

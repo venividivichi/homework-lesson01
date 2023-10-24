@@ -1,21 +1,33 @@
 
-function debounce(callback, delay) {
+  function concurrentPromises (promiseArr, count) {
 
-  let timeoutId;
+    return  new Promise( async (resolve) => {
+      let promise_arr_paralel = [];
+      let promise_arr_other = [];
 
-  return function () {
-    if (timeoutId) {
-      clearTimeout(timeoutId);
-    }
+      for (let i = 0; i < promiseArr.length; i++) {
+        if (i < count) {
+          let promise = promiseArr[i];
+          let result = await promise;
+          promise_arr_paralel.push(result);
+        } else {
+          let promise = promiseArr[i];
+          let result = await promise;
+          promise_arr_other.push(result);
+        } 
+      }
 
-    timeoutId = setTimeout(callback, delay);
+      resolve({paralel_promise: promise_arr_paralel, other_promise: promise_arr_other})
+      })
   }
-}
 
-let expensiveOperation = () => console.log("Doing some job...");
-let debouncedExpensiveOperation = debounce(expensiveOperation, 1000);
-
-debouncedExpensiveOperation();
-debouncedExpensiveOperation();
-debouncedExpensiveOperation();
-debouncedExpensiveOperation();
+  concurrentPromises([
+    new Promise(resolve => setTimeout(() => resolve('Promise 1'), 1000)),
+    new Promise(resolve => setTimeout(() => resolve('Promise 2'), 500)),
+    new Promise(resolve => setTimeout(() => resolve('Promise 3'), 800)),
+    new Promise(resolve => setTimeout(() => resolve('Promise 4'), 1500))
+  ],2)
+    .then( (result) => {
+      console.log(result.paralel_promise);
+      console.log(result.other_promise)
+    });
